@@ -38,17 +38,29 @@ namespace BestBank
 
     public void MakeDeposit(decimal amount, DateTime date, string note)
     {
-      /*      if (amount <= 0)
-            {
-              throw UnhandledExceptionEventHandler("")
-            }*/
-      var deposit = new Transaction(amount, date, note);
-      allTransactions.Add(deposit);
+      if (amount > 0)
+      {
+        Transaction deposit = new Transaction(amount, date, note);
+        allTransactions.Add(deposit);
+      }
+      else
+      {
+        throw new ArgumentOutOfRangeException(nameof(amount), "Transaction Error! Your deposit must be positive.");
+      }
     }
 
     public void MakeWithdrawal(decimal amount, DateTime date, string note)
     {
-
+      if (amount <= 0)
+      {
+        throw new ArgumentOutOfRangeException(nameof(amount), "Transaction Error! Please enter an amount greater than zero.");
+      }
+      if (Balance - amount <= 0)
+      {
+        throw new InvalidOperationException("Transaction Error! There are not enough funds to cover this withdrawal.");
+      }
+      Transaction withdrawal = new Transaction(amount, date, note);
+      allTransactions.Add(withdrawal);
     }
   }
 }
