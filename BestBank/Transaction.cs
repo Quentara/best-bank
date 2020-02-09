@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace BestBank
 {
   public class Transaction
@@ -9,7 +10,9 @@ namespace BestBank
 
     public Transaction(decimal amount, DateTime date, string note)
     {
-
+      this.Amount = amount;
+      this.Date = date;
+      this.Note = note;
     }
   }
 }

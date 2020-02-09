@@ -7,10 +7,12 @@ namespace BestBank
   {
     static void Main(string[] args)
     {
-      Console.WriteLine("Best Bank!");
+
+      PrintWelcomeMessage();
 
       var account = new BankAccount("Daniel", 1800);
       var account2 = new BankAccount("Nancy", 1500030);
+      account.MakeDeposit(500, DateTime.Now, "Savings for Xbox Series X");
 
       Console.WriteLine($"Name: {account.Owner}");
       Console.WriteLine($"Account Number: {account.AccountNumber}");
@@ -19,6 +21,13 @@ namespace BestBank
       Console.WriteLine($"Name: {account2.Owner}");
       Console.WriteLine($"Account Number: {account2.AccountNumber}");
       Console.WriteLine($"Current Balance: {account2.Balance}");
+    }
+
+    static void PrintWelcomeMessage()
+    {
+      Console.WriteLine("====================================");
+      Console.WriteLine("\tWelcome to Best Bank");
+      Console.WriteLine("====================================");
     }
   }
 }
