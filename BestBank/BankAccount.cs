@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace BestBank
 {
@@ -59,8 +60,31 @@ namespace BestBank
       {
         throw new InvalidOperationException("Transaction Error! There are not enough funds to cover this withdrawal.");
       }
-      Transaction withdrawal = new Transaction(amount, date, note);
+      Transaction withdrawal = new Transaction(-amount, date, note);
       allTransactions.Add(withdrawal);
+    }
+
+    public void PrintAllTransactions()
+    {
+      StringBuilder transactionOutput = new StringBuilder();
+      transactionOutput.Append("Date\t\tAmount\tNote\n");
+      foreach (var transaction in allTransactions)
+      {
+        transactionOutput.Append($"{transaction.Date.ToShortDateString()}\t");
+        transactionOutput.Append($"$ {transaction.Amount}\t");
+        transactionOutput.Append($"{transaction.Note}\n");
+      }
+      Console.WriteLine(transactionOutput);
+    }
+
+    public void DisplayAccountInfo()
+    {
+      StringBuilder accountOutput = new StringBuilder();
+      accountOutput.Append($"Name: {this.Owner}\n");
+      accountOutput.Append($"Account Number: {this.AccountNumber}\n");
+      accountOutput.Append($"Current Balance: {this.Balance}\n");
+      Console.WriteLine(accountOutput);
+      PrintAllTransactions();
     }
   }
 }

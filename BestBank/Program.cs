@@ -11,20 +11,15 @@ namespace BestBank
       PrintWelcomeMessage();
 
       var account = new BankAccount("Daniel", 1800);
-      var account2 = new BankAccount("Nancy", 1500030);
+      var account2 = new BankAccount("Nancy", 15030);
 
+      // Transactions
       account.MakeDeposit(500, DateTime.Now, "Savings for Xbox Series X");
       account.MakeWithdrawal(950, DateTime.Now, "Fancy Gaming PC");
-
       account2.MakeWithdrawal(50, DateTime.Now, "New pens.");
 
-      Console.WriteLine($"Name: {account.Owner}");
-      Console.WriteLine($"Account Number: {account.AccountNumber}");
-      Console.WriteLine($"Current Balance: {account.Balance}\n");
-
-      Console.WriteLine($"Name: {account2.Owner}");
-      Console.WriteLine($"Account Number: {account2.AccountNumber}");
-      Console.WriteLine($"Current Balance: {account2.Balance}");
+      account.DisplayAccountInfo();
+      account2.DisplayAccountInfo();
     }
 
     static void PrintWelcomeMessage()
